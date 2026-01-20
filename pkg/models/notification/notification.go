@@ -38,7 +38,11 @@ func FromRaw(raw []interface{}) (n *Notification, err error) {
 		return
 	}
 
-	nraw := raw[4].([]interface{})
+	nraw, ok := raw[4].([]interface{})
+	if !ok {
+		return n, fmt.Errorf("unknown message received: %v", raw)
+	}
+
 	if len(nraw) == 0 {
 		return
 	}
