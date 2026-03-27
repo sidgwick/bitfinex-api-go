@@ -303,7 +303,7 @@ func (c *Client) listenDisconnect() {
 
 func extractSymbolResolutionFromKey(subscription string) (symbol string, resolution common.CandleResolution, err error) {
 	var res, sym string
-	str := strings.Split(subscription, ":")
+	str := strings.SplitN(subscription, ":", 3)
 	if len(str) < 3 {
 		return "", resolution, fmt.Errorf("could not convert symbol resolution for %s: len %d", subscription, len(str))
 	}

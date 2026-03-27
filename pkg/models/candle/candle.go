@@ -66,7 +66,7 @@ func FromWSRaw(key string, data []interface{}) (interface{}, error) {
 	}
 
 	_, isSnapshot := data[0].([]interface{})
-	ss := strings.Split(key, ":")
+	ss := strings.SplitN(key, ":", 3)
 
 	// basic signature is: "trade:1m:tBTCUSD"
 	if len(ss) < 3 {
